@@ -22,9 +22,9 @@ import java.util.List;
 @AttributeOverride(name = "id", column = @Column(name = "geographical_boundary_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "GeographicalBoundaries.findAll", query = "SELECT g FROM GeographicalBoundaries g"),
-        @NamedQuery(name = "GeographicalBoundaries.findByGeographicalBoundaryId", query = "SELECT g FROM GeographicalBoundaries g WHERE g.id = :geographicalBoundaryId"),
-        @NamedQuery(name = "GeographicalBoundaries.findByBoundaryName", query = "SELECT g FROM GeographicalBoundaries g WHERE g.boundaryName = :boundaryName")})
+    @NamedQuery(name = "GeographicalBoundaries.findAll", query = "SELECT g FROM GeographicalBoundaries g"),
+    @NamedQuery(name = "GeographicalBoundaries.findByGeographicalBoundaryId", query = "SELECT g FROM GeographicalBoundaries g WHERE g.id = :geographicalBoundaryId"),
+    @NamedQuery(name = "GeographicalBoundaries.findByBoundaryName", query = "SELECT g FROM GeographicalBoundaries g WHERE g.boundaryName = :boundaryName")})
 public class GeographicalBoundaries extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,7 +49,6 @@ public class GeographicalBoundaries extends WbtAbstractModelBase implements Seri
     //private List<Addresses> addressesList;
     // @OneToMany(cascade = CascadeType.ALL, mappedBy = "geographicalCountryId")
     // private List<Addresses> addressesList1;
-
     @JoinColumn(name = "boundary_parent_id", referencedColumnName = "geographical_boundary_id")
     @ManyToOne
     private GeographicalBoundaries boundaryParentId;
@@ -60,7 +59,6 @@ public class GeographicalBoundaries extends WbtAbstractModelBase implements Seri
     private GeographicalBoundaryTypes geographicalBoundaryTypeId;
     //@OneToMany(mappedBy = "stateOfOriginId")
     //private List<People> peopleList;
-
 
     @Override
     public int hashCode() {
