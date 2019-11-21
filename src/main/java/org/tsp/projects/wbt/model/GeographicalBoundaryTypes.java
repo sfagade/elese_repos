@@ -17,12 +17,7 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 @Table(name = "ref_geographical_boundary_types")
-@AttributeOverride(name = "id", column = @Column(name = "geographical_boundary_type_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
-@XmlRootElement
-@NamedQueries({
-        @NamedQuery(name = "GeographicalBoundaryTypes.findAll", query = "SELECT g FROM GeographicalBoundaryTypes g"),
-        @NamedQuery(name = "GeographicalBoundaryTypes.findByGeographicalBoundaryTypeId", query = "SELECT g FROM GeographicalBoundaryTypes g WHERE g.id = :geographicalBoundaryTypeId"),
-        @NamedQuery(name = "GeographicalBoundaryTypes.findByBoundaryTypeName", query = "SELECT g FROM GeographicalBoundaryTypes g WHERE g.boundaryTypeName = :boundaryTypeName")})
+@AttributeOverride(name = "id", column = @Column(name = "geographical_boundary_type_id", nullable = false, columnDefinition = "BIGINT"))
 public class GeographicalBoundaryTypes extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;

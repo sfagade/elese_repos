@@ -18,12 +18,12 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 @Table(name = "ref_gender_types")
-@AttributeOverride(name = "id", column = @Column(name = "gender_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "gender_id", nullable = false, columnDefinition = "BIGINT"))
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "GenderTypes.findAll", query = "SELECT g FROM GenderTypes g"),
-        @NamedQuery(name = "GenderTypes.findByGenderId", query = "SELECT g FROM GenderTypes g WHERE g.id = :genderId"),
-        @NamedQuery(name = "GenderTypes.findByGenderName", query = "SELECT g FROM GenderTypes g WHERE g.genderName = :genderName")})
+    @NamedQuery(name = "GenderTypes.findAll", query = "SELECT g FROM GenderTypes g"),
+    @NamedQuery(name = "GenderTypes.findByGenderId", query = "SELECT g FROM GenderTypes g WHERE g.id = :genderId"),
+    @NamedQuery(name = "GenderTypes.findByGenderName", query = "SELECT g FROM GenderTypes g WHERE g.genderName = :genderName")})
 public class GenderTypes extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
