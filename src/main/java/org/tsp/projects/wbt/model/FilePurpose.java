@@ -11,7 +11,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -25,6 +28,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
+@Data
 public class FilePurpose extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,6 +42,7 @@ public class FilePurpose extends WbtAbstractModelBase implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "filePurposeId")
     private List<FileUploads> fileUploadsList;
 
