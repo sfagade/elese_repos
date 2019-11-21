@@ -23,7 +23,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "users_last_activities")
-@AttributeOverride(name = "id", column = @Column(name = "user_last_activity_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "user_last_activity_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
@@ -73,7 +73,7 @@ public class UsersLastActivities extends WbtAbstractModelBase implements Seriali
     @Temporal(TemporalType.TIMESTAMP)
     private Date activityStartTime;
 
-    @JoinColumn(name = "login_id")
+     @JoinColumn(name = "login_id")
     @ManyToOne(optional = false)
     private LoginInformation loginInformation;
 

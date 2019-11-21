@@ -14,12 +14,12 @@ import lombok.ToString;
  * @author sfagade
  */
 @Entity
-@Table(name = "contact_informations")
-@AttributeOverride(name = "id", column = @Column(name = "contact_information_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@Table(name = "contact_information")
+@AttributeOverride(name = "id", column = @Column(name = "contact_information_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
-public class ContactInformations extends WbtAbstractModelBase implements Serializable {
+public class ContactInformation extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,10 +41,6 @@ public class ContactInformations extends WbtAbstractModelBase implements Seriali
     @Size(max = 100)
     @Column(name = "web_address")
     private String webAddress;
-    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Size(max = 15)
-    @Column(name = "fax")
-    private String fax;
 
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     @ManyToOne
@@ -69,10 +65,10 @@ public class ContactInformations extends WbtAbstractModelBase implements Seriali
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ContactInformations)) {
+        if (!(object instanceof ContactInformation)) {
             return false;
         }
-        ContactInformations other = (ContactInformations) object;
+        ContactInformation other = (ContactInformation) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 

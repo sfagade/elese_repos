@@ -20,7 +20,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "ref_person_titles")
-@AttributeOverride(name = "id", column = @Column(name = "person_title_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "person_title_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor

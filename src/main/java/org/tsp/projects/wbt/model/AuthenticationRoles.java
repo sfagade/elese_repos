@@ -21,7 +21,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "authentication_roles")
-@AttributeOverride(name = "id", column = @Column(name = "authentication_role_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "authentication_role_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor

@@ -22,7 +22,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "addresses")
-@AttributeOverride(name = "id", column = @Column(name = "address_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "address_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
@@ -66,7 +66,7 @@ public class Addresses extends WbtAbstractModelBase implements Serializable {
     @OneToMany(mappedBy = "addressId")
     private List<People> peopleList;
     @OneToMany(mappedBy = "addressId")
-    private List<ContactInformations> contactInformationsList;
+    private List<ContactInformation> contactInformationsList;
 
     @Override
     public int hashCode() {

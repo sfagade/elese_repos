@@ -19,7 +19,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "application_config")
-@AttributeOverride(name = "id", column = @Column(name = "application_config_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "application_config_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
@@ -62,7 +62,7 @@ public class ApplicationConfigs extends WbtAbstractModelBase implements Serializ
     private Integer simReserveDefaultDays;
 
     @ManyToOne
-    @JoinColumn(name = "login_id", referencedColumnName = "login_id")
+    @JoinColumn(name = "updated_login_id", referencedColumnName = "login_id")
     private LoginInformation lastUpdateLoginId;
 
     @Override

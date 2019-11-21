@@ -17,7 +17,7 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 @Table(name = "ref_geographical_boundary_types")
-@AttributeOverride(name = "id", column = @Column(name = "geographical_boundary_type_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "geographical_boundary_type_id", nullable = false, columnDefinition = "BIGINT"))
 public class GeographicalBoundaryTypes extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;

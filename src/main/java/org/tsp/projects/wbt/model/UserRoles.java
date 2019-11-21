@@ -29,7 +29,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @Table(name = "user_roles")
-@AttributeOverride(name = "id", column = @Column(name = "user_role_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "user_role_id", nullable = false, columnDefinition = "BIGINT"))
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserRoles.findAll", query = "SELECT u FROM UserRoles u"),

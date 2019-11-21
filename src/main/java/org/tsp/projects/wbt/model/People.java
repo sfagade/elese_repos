@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Formula;
@@ -19,7 +18,7 @@ import org.hibernate.annotations.Formula;
  */
 @Entity
 @Table(name = "people")
-@AttributeOverride(name = "id", column = @Column(name = "person_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "person_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
@@ -52,9 +51,9 @@ public class People extends WbtAbstractModelBase implements Serializable {
     @JoinColumn(name = "gender_id", referencedColumnName = "gender_id")
     @ManyToOne
     private GenderTypes genderTypeId;
-    @Column(name = "wedding_annisversary")
+    @Column(name = "wedding_anniversary")
     @Temporal(TemporalType.DATE)
-    private Date weddingAnnisversary;
+    private Date weddingAnniversary;
     @Column(name = "update_required")
     private Boolean updateRequired;
     @Column(name = "is_disabled")
@@ -93,7 +92,7 @@ public class People extends WbtAbstractModelBase implements Serializable {
     @ManyToOne
     private Religions religionId;
     @OneToMany(mappedBy = "personId")
-    private List<ContactInformations> contactInformationsList;
+    private List<ContactInformation> contactInformationList;
 
     @Formula("Concat_ws(' ',first_name, last_name)")
     private String fullName;

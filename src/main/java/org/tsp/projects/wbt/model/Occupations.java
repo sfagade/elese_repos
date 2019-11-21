@@ -26,7 +26,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @Table(name = "ref_occupations")
-@AttributeOverride(name = "id", column = @Column(name = "occupation_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "occupation_id", nullable = false, columnDefinition = "BIGINT"))
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Occupations.findAll", query = "SELECT o FROM Occupations o"),

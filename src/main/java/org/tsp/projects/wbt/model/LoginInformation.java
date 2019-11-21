@@ -3,6 +3,7 @@ package org.tsp.projects.wbt.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -25,7 +26,7 @@ import lombok.ToString;
  */
 @Entity
 @Table(name = "login_information")
-@AttributeOverride(name = "id", column = @Column(name = "login_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "login_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
@@ -96,12 +97,12 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     @OneToMany(mappedBy = "deletedById")
     private List<FileUploads> fileUploadsList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdById")
-    private List<ContactInformations> contactInformationsList;
+    private List<ContactInformation> contactInformationsList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdById")
     private List<Organizations> organizationsList;
-    @OneToMany(mappedBy="loginInformation")
-    private List<UsersLastActivities> usersLastActivitiesList;
+     @OneToMany(mappedBy="loginInformation")
+    private Set<UsersLastActivities> usersLastActivitiesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "logindetailId")
     private List<UserRoles> userRolesList;
 

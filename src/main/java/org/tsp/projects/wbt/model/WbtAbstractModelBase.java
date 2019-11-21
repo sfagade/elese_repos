@@ -15,7 +15,7 @@ public abstract class WbtAbstractModelBase implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id", nullable = false, columnDefinition = "BIGINT UNSIGNED")
+    @Column(name = "id", nullable = false, columnDefinition = "BIGINT")
     protected Long id;
 
     @Column(name = "created")

@@ -28,7 +28,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @Table(name = "organizations")
-@AttributeOverride(name = "id", column = @Column(name = "organization_id", nullable = false, columnDefinition = "BIGINT UNSIGNED"))
+@AttributeOverride(name = "id", column = @Column(name = "organization_id", nullable = false, columnDefinition = "BIGINT"))
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Organizations.findAll", query = "SELECT o FROM Organizations o"),
@@ -44,8 +44,8 @@ public class Organizations extends WbtAbstractModelBase implements Serializable 
     @Column(name = "organization_name")
     private String organizationName;
     @Size(max = 12)
-    @Column(name = "organzaition_code")
-    private String organzaitionCode;
+    @Column(name = "organization_code")
+    private String organizationCode;
     @Column(name = "rcno")
     private String rcno;
     @Column(name = "enabled")
@@ -56,7 +56,7 @@ public class Organizations extends WbtAbstractModelBase implements Serializable 
     @OneToMany(mappedBy = "organizationId")
     private List<People> peopleList;
     @OneToMany(mappedBy = "organizationId")
-    private List<ContactInformations> contactInformationsList;
+    private List<ContactInformation> contactInformationList;
     @JoinColumn(name = "organization_logo_id", referencedColumnName = "file_upload_id")
     @ManyToOne
     private FileUploads organizationLogoId;
