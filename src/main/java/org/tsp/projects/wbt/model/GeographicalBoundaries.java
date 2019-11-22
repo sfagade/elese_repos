@@ -1,13 +1,13 @@
 package org.tsp.projects.wbt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,15 +16,14 @@ import java.util.List;
  */
 @Entity
 @NoArgsConstructor
-@ToString
+@EqualsAndHashCode(callSuper = true)
+@Data
 @AllArgsConstructor
 @Table(name = "ref_geographical_boundaries")
 @AttributeOverride(name = "id", column = @Column(name = "geographical_boundary_id", nullable = false, columnDefinition = "BIGINT"))
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "GeographicalBoundaries.findAll", query = "SELECT g FROM GeographicalBoundaries g"),
-    @NamedQuery(name = "GeographicalBoundaries.findByGeographicalBoundaryId", query = "SELECT g FROM GeographicalBoundaries g WHERE g.id = :geographicalBoundaryId"),
-    @NamedQuery(name = "GeographicalBoundaries.findByBoundaryName", query = "SELECT g FROM GeographicalBoundaries g WHERE g.boundaryName = :boundaryName")})
+@JsonIgnoreProperties({
+        "addressesList", "addressesList1", "peopleList", "geographicalBoundariesList"
+})
 public class GeographicalBoundaries extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,21 +59,5 @@ public class GeographicalBoundaries extends WbtAbstractModelBase implements Seri
     @OneToMany(mappedBy = "stateOfOriginId")
     private List<People> peopleList;
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GeographicalBoundaries)) {
-            return false;
-        }
-        GeographicalBoundaries other = (GeographicalBoundaries) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
-    }
 
 }

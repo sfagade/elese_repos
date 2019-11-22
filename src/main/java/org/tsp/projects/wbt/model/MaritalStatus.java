@@ -1,29 +1,26 @@
 package org.tsp.projects.wbt.model;
 
-import java.io.Serializable;
-import java.util.List;
-import javax.persistence.AttributeOverride;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import java.io.Serializable;
+import java.util.List;
 
 /**
- *
  * @author sfagade
  */
 @Entity
 @Table(name = "ref_marital_status")
 @AttributeOverride(name = "id", column = @Column(name = "marital_status_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
-@ToString
+@EqualsAndHashCode(callSuper = true)
+@Data
 @AllArgsConstructor
 public class MaritalStatus extends WbtAbstractModelBase implements Serializable {
 
@@ -38,24 +35,8 @@ public class MaritalStatus extends WbtAbstractModelBase implements Serializable 
     @Column(name = "description")
     private String description;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maritalStatusId")
     private List<People> peopleList;
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MaritalStatus)) {
-            return false;
-        }
-        MaritalStatus other = (MaritalStatus) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
-    }
 
 }

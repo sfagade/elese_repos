@@ -15,8 +15,8 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *
@@ -26,7 +26,7 @@ import lombok.ToString;
 @Table(name = "ref_file_purpose")
 @AttributeOverride(name = "id", column = @Column(name = "file_purpose_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
-@ToString
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @Data
 public class FilePurpose extends WbtAbstractModelBase implements Serializable {
@@ -45,22 +45,5 @@ public class FilePurpose extends WbtAbstractModelBase implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "filePurposeId")
     private List<FileUploads> fileUploadsList;
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FilePurpose)) {
-            return false;
-        }
-        FilePurpose other = (FilePurpose) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
-    }
 
 }
