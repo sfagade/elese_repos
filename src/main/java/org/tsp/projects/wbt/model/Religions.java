@@ -10,9 +10,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 /**
  *
@@ -22,7 +22,8 @@ import lombok.ToString;
 @Table(name = "ref_religions")
 @AttributeOverride(name = "id", column = @Column(name = "religion_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
-@ToString
+@EqualsAndHashCode(callSuper = true)
+@Data
 @AllArgsConstructor
 public class Religions extends WbtAbstractModelBase implements Serializable {
 
@@ -37,24 +38,8 @@ public class Religions extends WbtAbstractModelBase implements Serializable {
     @Column(name = "created_by")
     private String createdBy;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "religionId")
     private List<People> peopleList;
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Religions)) {
-            return false;
-        }
-        Religions other = (Religions) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
-    }
 
 }
