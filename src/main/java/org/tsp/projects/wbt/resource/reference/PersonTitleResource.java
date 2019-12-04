@@ -1,4 +1,4 @@
-package org.tsp.projects.wbt.resource;
+package org.tsp.projects.wbt.resource.reference;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
