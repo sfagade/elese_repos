@@ -1,6 +1,7 @@
 package org.tsp.projects.wbt.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Basic;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -25,7 +27,7 @@ import lombok.ToString;
 @AttributeOverride(name = "id", column = @Column(name = "address_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
+@Data
 public class Addresses extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,9 +49,6 @@ public class Addresses extends WbtAbstractModelBase implements Serializable {
     @Size(max = 100)
     @Column(name = "city")
     private String city;
-    @Size(max = 8)
-    @Column(name = "area_code")
-    private String areaCode;
 
     @JoinColumn(name = "created_by_id", referencedColumnName = "login_id")
     @ManyToOne(optional = false)
@@ -66,7 +65,16 @@ public class Addresses extends WbtAbstractModelBase implements Serializable {
     @OneToMany(mappedBy = "addressId")
     private List<People> peopleList;
     @OneToMany(mappedBy = "addressId")
-    private List<ContactInformation> contactInformationsList;
+    private List<ContactInformation> contactInformationList;
+
+    public Addresses(Long addressId, String houseNo, String city, GeographicalBoundaries localGovtId, LocalDateTime created, LocalDateTime modified) {
+        this.id = addressId;
+        this.houseNo = houseNo;
+        this.city = city;
+        this.localCouncilDevAreaId = localGovtId;
+        this.created = created;
+        this.modified = modified;
+    }
 
     @Override
     public int hashCode() {

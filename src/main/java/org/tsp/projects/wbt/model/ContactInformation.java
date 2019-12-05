@@ -33,11 +33,11 @@ public class ContactInformation extends WbtAbstractModelBase implements Serializ
     @NotNull
     @Email
     @Size(min = 1, max = 100)
-    @Column(name = "office_email_address")
-    private String officeEmailAddress;
+    @Column(name = "primary_email_address", unique = true)
+    private String primaryEmailAddress;
     @Size(max = 100)
-    @Column(name = "personal_email_address")
-    private String personalEmailAddress;
+    @Column(name = "backup_email_address")
+    private String backupEmailAddress;
     @Size(max = 100)
     @Column(name = "web_address")
     private String webAddress;

@@ -1,9 +1,11 @@
 package org.tsp.projects.wbt.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.StreamSupport;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -17,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -29,7 +32,7 @@ import lombok.ToString;
 @AttributeOverride(name = "id", column = @Column(name = "login_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
+@Data
 public class LoginInformation extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,7 +40,7 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
     @Basic(optional = false)
     @NotNull
@@ -62,9 +65,9 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     private String secretQuestionAnswer;
     @Column(name = "activate_status")
     private Boolean activateStatus;
-    @Column(name = "lastlogindate")
+    @Column(name = "last_login_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date lastlogindate;
+    private Date lastLoginDate;
     @Column(name = "pword_reset_required")
     private Boolean pwordResetRequired;
     @Size(max = 35)
@@ -105,6 +108,15 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     private Set<UsersLastActivities> usersLastActivitiesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "logindetailId")
     private List<UserRoles> userRolesList;
+
+    public LoginInformation(Long loginId, String username, String password, Boolean isActive, LocalDateTime created, LocalDateTime modified) {
+        this.id = loginId;
+        this.username = username;
+        this.pword = password;
+        this.active = isActive;
+        this.created = created;
+        this.modified = modified;
+    }
 
     @Override
     public int hashCode() {

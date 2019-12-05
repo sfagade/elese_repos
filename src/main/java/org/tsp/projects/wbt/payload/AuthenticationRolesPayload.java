@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
 public class AuthenticationRolesPayload extends PayloadAbstractBase {
 
     @NotNull

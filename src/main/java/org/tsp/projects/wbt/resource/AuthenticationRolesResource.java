@@ -33,7 +33,6 @@ public class AuthenticationRolesResource {
                 authRoleRequestPayload.getIsRestricted(),null, null);
 
         authenticationRolesRepository.save(authenticationRole);
-        log.info("Saved auth-role: {}\n returning now", authRoleRequestPayload);
         return ResponseEntity.ok(authenticationRole);
     }
 }

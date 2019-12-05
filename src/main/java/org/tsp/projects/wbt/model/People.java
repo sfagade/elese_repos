@@ -46,8 +46,6 @@ public class People extends WbtAbstractModelBase implements Serializable {
     @Column(name = "date_of_birth")
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
-    @Column(name = "next_of_kin")
-    private Integer nextOfKin;
     @JoinColumn(name = "gender_id", referencedColumnName = "gender_id")
     @ManyToOne
     private GenderTypes genderTypeId;
@@ -79,9 +77,6 @@ public class People extends WbtAbstractModelBase implements Serializable {
     @JoinColumn(name = "local_govt_of_origin_id", referencedColumnName = "geographical_boundary_id")
     @ManyToOne
     private GeographicalBoundaries localGovtOfOriginId;
-    @JoinColumn(name = "state_of_origin_id", referencedColumnName = "geographical_boundary_id")
-    @ManyToOne
-    private GeographicalBoundaries stateOfOriginId;
     @JoinColumn(name = "marital_status_id", referencedColumnName = "marital_status_id")
     @ManyToOne(optional = false)
     private MaritalStatus maritalStatusId;
