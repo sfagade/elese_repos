@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- *
  * @author sfagade
  */
 @Entity
@@ -67,13 +66,18 @@ public class Addresses extends WbtAbstractModelBase implements Serializable {
     @OneToMany(mappedBy = "addressId")
     private List<ContactInformation> contactInformationList;
 
-    public Addresses(Long addressId, String houseNo, String city, GeographicalBoundaries localGovtId, LocalDateTime created, LocalDateTime modified) {
+    public Addresses(Long addressId, String streetName, String houseNo, String city, GeographicalBoundaries localGovtId, LoginInformation createdById,
+                     GeographicalBoundaries geographicalStateId, GeographicalBoundaries geographicalCountryId,  LocalDateTime created, LocalDateTime modified) {
         this.id = addressId;
         this.houseNo = houseNo;
         this.city = city;
         this.localCouncilDevAreaId = localGovtId;
         this.created = created;
         this.modified = modified;
+        this.createdById = createdById;
+        this.streetName = streetName;
+        this.geographicalCountryId = geographicalCountryId;
+        this.geographicalStateId = geographicalStateId;
     }
 
     @Override

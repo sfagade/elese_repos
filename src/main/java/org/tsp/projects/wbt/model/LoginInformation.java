@@ -48,8 +48,6 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     @Size(min = 1, max = 50)
     @Column(name = "activation_key")
     private String activationKey;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "secret_question_answer")
     private String secretQuestionAnswer;
@@ -101,11 +99,13 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     @OneToOne(mappedBy = "loginInformation")
     private Person loginPerson;
 
-    public LoginInformation(Long loginId, String username, String password, Boolean isActive, LocalDateTime created, LocalDateTime modified) {
+    public LoginInformation(Long loginId, String username, String password, Boolean isActive, String activationKey,
+                            LocalDateTime created, LocalDateTime modified) {
         this.id = loginId;
         this.username = username;
         this.pword = password;
         this.active = isActive;
+        this.activationKey = activationKey;
         this.created = created;
         this.modified = modified;
     }

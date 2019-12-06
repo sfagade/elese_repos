@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.tsp.projects.wbt.model.*;
 import org.tsp.projects.wbt.payload.*;
 import org.tsp.projects.wbt.repository.*;
+import org.tsp.projects.wbt.util.ApplicationUtility;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -66,7 +67,7 @@ public class RegistrationResource {
     public ResponseEntity<?> createNewApplicationUser(@Valid @RequestBody PersonPayload personRequestPayload) {
         log.info("Registering new app user: {}", personRequestPayload);
         LoginInformationPayload loginPayload = personRequestPayload.getLoginInformation();
-        AddressesPayload addressPayload = personRequestPayload.getAddresses();
+        AddressesPayload addressPayload = personRequestPayload.getUserAddress();
         ContactInformationPayload contactInfoPayload = personRequestPayload.getContactInformation();
 
         if (!isValidPayloadReferences(personRequestPayload)) {
@@ -75,8 +76,11 @@ public class RegistrationResource {
         }
         log.info("Completed all reference data validation");
 
-        LoginInformation loginInformation = new LoginInformation(null, loginPayload.getUsername(), loginPayload.getPassword(), false, null, null);
-        Addresses address = new Addresses(null, addressPayload.getHouseNo(), addressPayload.getCity(), geographicalBoundaryLocalGovt, null, null);
+        LoginInformation loginInformation = new LoginInformation(null, loginPayload.getUsername(), loginPayload.getPassword(), false,
+                ApplicationUtility.createRandomCode(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"), null, null);
+        Addresses address = new Addresses(null, addressPayload.getStreetName(), addressPayload.getHouseNo(), addressPayload.getCity(),
+                geographicalBoundaryLocalGovt, loginInformation, geographicalBoundaryLocalGovt.getBoundaryParentId(),
+                geographicalBoundaryLocalGovt.getBoundaryParentId().getBoundaryParentId(), null, null);
         Person person = new Person(null, personRequestPayload.getFirstName(), personRequestPayload.getLastName(), personRequestPayload.getMiddleName(),
                 personRequestPayload.getDateOfBirth(), genderTypes, address, loginInformation, personTitles, geographicalBoundaryLocalGovt, maritalStatus,
                 occupation, religion, loginInformation, null, null);
@@ -94,7 +98,7 @@ public class RegistrationResource {
 
     private Boolean isValidPayloadReferences(PersonPayload personRequestPayload) {
 
-        AddressesPayload addressPayload = personRequestPayload.getAddresses();
+        AddressesPayload addressPayload = personRequestPayload.getUserAddress();
         Optional<GeographicalBoundaries> optionalLocalGovt = geographicalBoundariesRepository.findById(addressPayload.getLocalGovtAreaId());
         if (!optionalLocalGovt.isPresent()) {
             log.info("invalid local govt. id specified: {}", addressPayload.getLocalGovtAreaId());

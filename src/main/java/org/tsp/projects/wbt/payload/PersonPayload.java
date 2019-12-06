@@ -36,7 +36,7 @@ public class PersonPayload extends PayloadAbstractBase {
     private long religionId;
 
     @NotNull
-    private AddressesPayload addresses;
+    private AddressesPayload userAddress;
     @NotNull
     private ContactInformationPayload contactInformation;
     @NotNull
