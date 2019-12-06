@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.tsp.projects.wbt.model.AuthenticationRoles;
+import org.tsp.projects.wbt.model.AuthenticationRole;
 import org.tsp.projects.wbt.model.WbtAbstractModelBase;
 import org.tsp.projects.wbt.payload.AuthenticationRolesPayload;
 import org.tsp.projects.wbt.repository.AuthenticationRolesRepository;
@@ -28,7 +28,7 @@ public class AuthenticationRolesResource {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<WbtAbstractModelBase> createNewApplicationRole(@Valid @RequestBody AuthenticationRolesPayload authRoleRequestPayload) {
         log.info("About to save auth-role: {}", authRoleRequestPayload);
-        AuthenticationRoles authenticationRole = new AuthenticationRoles(authRoleRequestPayload.getRoleName(), authRoleRequestPayload.getRoleDescription(),
+        AuthenticationRole authenticationRole = new AuthenticationRole(authRoleRequestPayload.getRoleName(), authRoleRequestPayload.getRoleDescription(),
                 authRoleRequestPayload.getRoleType(), authRoleRequestPayload.getRoleOrder(), authRoleRequestPayload.getUrlMapping(),
                 authRoleRequestPayload.getIsRestricted(),null, null);
 

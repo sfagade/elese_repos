@@ -1,13 +1,14 @@
 package org.tsp.projects.wbt.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Formula;
@@ -21,8 +22,8 @@ import org.hibernate.annotations.Formula;
 @AttributeOverride(name = "id", column = @Column(name = "person_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
-public class People extends WbtAbstractModelBase implements Serializable {
+@Data
+public class Person extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -82,18 +83,43 @@ public class People extends WbtAbstractModelBase implements Serializable {
     private MaritalStatus maritalStatusId;
     @JoinColumn(name = "occupation_id", referencedColumnName = "occupation_id")
     @ManyToOne
-    private Occupations occupationId;
+    private Occupation occupationId;
     @JoinColumn(name = "religion_id", referencedColumnName = "religion_id")
     @ManyToOne
-    private Religions religionId;
+    private Religion religionId;
     @OneToMany(mappedBy = "personId")
     private List<ContactInformation> contactInformationList;
+    @JoinColumn(name = "login_id", referencedColumnName = "login_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    private LoginInformation loginInformation;
 
     @Formula("Concat_ws(' ',first_name, last_name)")
     private String fullName;
 
     @Formula("Concat_ws(' ',first_name, middle_name, last_name)")
     private String completeName;
+
+    public Person(Long personId, @NotNull @Size(min = 1, max = 35) String firstName, @NotNull @Size(min = 1, max = 35) String lastName,
+                  @Size(max = 40) String middleName, Date dateOfBirth, GenderTypes genderTypeId, Addresses addressId, LoginInformation createdById,
+                  PersonTitles personTitleId, GeographicalBoundaries localGovtOfOriginId, MaritalStatus maritalStatusId,
+                  Occupation occupationId, Religion religionId, LoginInformation loginInformation, LocalDateTime created, LocalDateTime modified) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.dateOfBirth = dateOfBirth;
+        this.genderTypeId = genderTypeId;
+        this.addressId = addressId;
+        this.personTitleId = personTitleId;
+        this.localGovtOfOriginId = localGovtOfOriginId;
+        this.maritalStatusId = maritalStatusId;
+        this.occupationId = occupationId;
+        this.religionId = religionId;
+        this.id = personId;
+        this.created = created;
+        this.modified = modified;
+        this.createdById = createdById;
+        this.loginInformation = loginInformation;
+    }
 
     @Override
     public int hashCode() {
@@ -105,10 +131,10 @@ public class People extends WbtAbstractModelBase implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof People)) {
+        if (!(object instanceof Person)) {
             return false;
         }
-        People other = (People) object;
+        Person other = (Person) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 

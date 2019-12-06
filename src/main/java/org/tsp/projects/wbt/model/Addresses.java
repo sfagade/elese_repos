@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -63,7 +63,7 @@ public class Addresses extends WbtAbstractModelBase implements Serializable {
     @ManyToOne()
     private GeographicalBoundaries localCouncilDevAreaId;
     @OneToMany(mappedBy = "addressId")
-    private List<People> peopleList;
+    private List<Person> personList;
     @OneToMany(mappedBy = "addressId")
     private List<ContactInformation> contactInformationList;
 

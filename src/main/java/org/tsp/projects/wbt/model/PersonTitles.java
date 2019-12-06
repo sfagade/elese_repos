@@ -40,6 +40,6 @@ public class PersonTitles extends WbtAbstractModelBase implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "personTitleId")
-    private List<People> peopleList;
+    private List<Person> personList;
 
 }

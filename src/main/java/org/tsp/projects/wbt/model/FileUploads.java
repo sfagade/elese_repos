@@ -78,7 +78,7 @@ public class FileUploads extends WbtAbstractModelBase implements Serializable {
     @ManyToOne(optional = false)
     private FilePurpose filePurposeId;
     @OneToMany(mappedBy = "pictureUploadId")
-    private List<People> peopleList;
+    private List<Person> personList;
 
     @OneToMany(mappedBy = "organizationLogoId")
     private List<Organizations> organizationsList;

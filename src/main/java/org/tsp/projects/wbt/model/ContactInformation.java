@@ -1,14 +1,16 @@
 package org.tsp.projects.wbt.model;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import java.time.LocalDateTime;
 
 /**
  * @author sfagade
@@ -18,7 +20,7 @@ import lombok.ToString;
 @AttributeOverride(name = "id", column = @Column(name = "contact_information_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
+@Data
 public class ContactInformation extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,7 +55,23 @@ public class ContactInformation extends WbtAbstractModelBase implements Serializ
     private Organizations organizationId;
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")
     @ManyToOne
-    private People personId;
+    private Person personId;
+
+    public ContactInformation(Long contactId, @Size(max = 15) String contactPhoneNumber, @Size(max = 15) String backupPhoneNumber,
+                              @NotNull @Email @Size(min = 1, max = 100) String primaryEmailAddress,
+                              @Size(max = 100) String backupEmailAddress, Addresses addressId, LoginInformation createdById,
+                              Person personId, LocalDateTime created, LocalDateTime modified) {
+        this.contactPhoneNumber = contactPhoneNumber;
+        this.backupPhoneNumber = backupPhoneNumber;
+        this.primaryEmailAddress = primaryEmailAddress;
+        this.backupEmailAddress = backupEmailAddress;
+        this.addressId = addressId;
+        this.createdById = createdById;
+        this.personId = personId;
+        this.id = contactId;
+        this.created = created;
+        this.modified = modified;
+    }
 
     @Override
     public int hashCode() {

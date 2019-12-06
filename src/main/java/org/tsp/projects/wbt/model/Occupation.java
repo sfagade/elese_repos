@@ -22,7 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "ref_occupations")
 @AttributeOverride(name = "id", column = @Column(name = "occupation_id", nullable = false, columnDefinition = "BIGINT"))
-public class Occupations extends WbtAbstractModelBase implements Serializable {
+public class Occupation extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,6 +37,6 @@ public class Occupations extends WbtAbstractModelBase implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "occupationId")
-    private List<People> peopleList;
+    private List<Person> personList;
 
 }

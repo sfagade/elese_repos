@@ -20,5 +20,5 @@ public class LoginInformationPayload extends PayloadAbstractBase {
     @Size(min = 8, max = 16)
     private String password;
     @NotNull
-    private int roleId;
+    private long roleId;
 }

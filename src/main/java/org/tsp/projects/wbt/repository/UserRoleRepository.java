@@ -1,14 +1,10 @@
 package org.tsp.projects.wbt.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.stereotype.Repository;
-import org.tsp.projects.wbt.model.GenderTypes;
+import org.tsp.projects.wbt.model.UserRole;
 
-/**
- *
- * @author sfagade
- */
 @Repository
-public interface GenderTypeRepository extends JpaRepository<GenderTypes, Long> {
-
+public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 }

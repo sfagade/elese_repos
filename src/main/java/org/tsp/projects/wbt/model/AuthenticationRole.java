@@ -27,7 +27,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @Data
-public class AuthenticationRoles extends WbtAbstractModelBase implements Serializable {
+public class AuthenticationRole extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,7 +55,7 @@ public class AuthenticationRoles extends WbtAbstractModelBase implements Seriali
     private String createdBy;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "authenticationRoleId")
-    private List<UserRoles> userRolesList;
+    private List<UserRole> userRoleList;
 
     @Override
     public int hashCode() {
@@ -67,10 +67,10 @@ public class AuthenticationRoles extends WbtAbstractModelBase implements Seriali
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AuthenticationRoles)) {
+        if (!(object instanceof AuthenticationRole)) {
             return false;
         }
-        AuthenticationRoles other = (AuthenticationRoles) object;
+        AuthenticationRole other = (AuthenticationRole) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 

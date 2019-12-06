@@ -54,7 +54,7 @@ public class Organizations extends WbtAbstractModelBase implements Serializable 
     private Boolean isVendor;
 
     @OneToMany(mappedBy = "organizationId")
-    private List<People> peopleList;
+    private List<Person> personList;
     @OneToMany(mappedBy = "organizationId")
     private List<ContactInformation> contactInformationList;
     @JoinColumn(name = "organization_logo_id", referencedColumnName = "file_upload_id")

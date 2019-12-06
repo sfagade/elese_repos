@@ -6,35 +6,29 @@
 package org.tsp.projects.wbt.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
+
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- *
  * @author sfagade
  */
 @Entity
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
+@Data
 @Table(name = "user_roles")
 @AttributeOverride(name = "id", column = @Column(name = "user_role_id", nullable = false, columnDefinition = "BIGINT"))
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "UserRoles.findAll", query = "SELECT u FROM UserRoles u"),
-    @NamedQuery(name = "UserRoles.findByUserRoleId", query = "SELECT u FROM UserRoles u WHERE u.id = :userRoleId")})
-public class UserRoles extends WbtAbstractModelBase implements Serializable {
+public class UserRole extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,10 +38,20 @@ public class UserRoles extends WbtAbstractModelBase implements Serializable {
 
     @JoinColumn(name = "authentication_role_id", referencedColumnName = "authentication_role_id")
     @ManyToOne(optional = false)
-    private AuthenticationRoles authenticationRoleId;
-    @JoinColumn(name = "logindetail_id", referencedColumnName = "login_id")
+    private AuthenticationRole authenticationRoleId;
+    @JoinColumn(name = "login_id", referencedColumnName = "login_id")
     @ManyToOne(optional = false)
-    private LoginInformation logindetailId;
+    private LoginInformation loginInformation;
+
+    public UserRole(Long userRoleId, LoginInformation loginInformation, AuthenticationRole role, String description, LocalDateTime created,
+                    LocalDateTime modified) {
+        this.id = userRoleId;
+        this.loginInformation = loginInformation;
+        this.authenticationRoleId = role;
+        this.description = description;
+        this.created = created;
+        this.modified = modified;
+    }
 
     @Override
     public int hashCode() {
@@ -59,10 +63,10 @@ public class UserRoles extends WbtAbstractModelBase implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserRoles)) {
+        if (!(object instanceof UserRole)) {
             return false;
         }
-        UserRoles other = (UserRoles) object;
+        UserRole other = (UserRole) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 

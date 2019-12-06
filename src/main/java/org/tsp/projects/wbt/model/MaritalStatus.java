@@ -37,6 +37,6 @@ public class MaritalStatus extends WbtAbstractModelBase implements Serializable 
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maritalStatusId")
-    private List<People> peopleList;
+    private List<Person> personList;
 
 }

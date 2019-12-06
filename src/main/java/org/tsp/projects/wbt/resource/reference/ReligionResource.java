@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.tsp.projects.wbt.model.Religions;
-import org.tsp.projects.wbt.repository.ReligionsRepository;
+import org.tsp.projects.wbt.model.Religion;
+import org.tsp.projects.wbt.repository.ReligionRepository;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import java.util.List;
 @RequestMapping("/api/religionResource")
 public class ReligionResource {
 
-    private final ReligionsRepository religionRepos;
+    private final ReligionRepository religionRepos;
 
     @Autowired
-    public ReligionResource(ReligionsRepository religionsRepository) {
+    public ReligionResource(ReligionRepository religionsRepository) {
         this.religionRepos = religionsRepository;
     }
 
@@ -27,7 +27,7 @@ public class ReligionResource {
      *
      */
     @GetMapping("/fetchAllReligions")
-    public List<Religions> fetchAllReligions() {
+    public List<Religion> fetchAllReligions() {
         return religionRepos.findAll();
     }
 }

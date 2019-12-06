@@ -5,19 +5,9 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.StreamSupport;
-import javax.persistence.AttributeOverride;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -94,20 +84,22 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdById")
     private List<Addresses> addressesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdById")
-    private List<People> peopleList1;
+    private List<Person> personList1;
     @OneToMany(mappedBy = "uploadedById")
     private List<FileUploads> fileUploadsList;
     @OneToMany(mappedBy = "deletedById")
     private List<FileUploads> fileUploadsList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdById")
-    private List<ContactInformation> contactInformationsList;
+    private List<ContactInformation> contactInformationList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdById")
     private List<Organizations> organizationsList;
      @OneToMany(mappedBy="loginInformation")
     private Set<UsersLastActivities> usersLastActivitiesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "logindetailId")
-    private List<UserRoles> userRolesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "loginInformation")
+    private List<UserRole> userRoleList;
+    @OneToOne(mappedBy = "loginInformation")
+    private Person loginPerson;
 
     public LoginInformation(Long loginId, String username, String password, Boolean isActive, LocalDateTime created, LocalDateTime modified) {
         this.id = loginId;

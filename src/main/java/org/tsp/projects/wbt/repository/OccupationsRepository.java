@@ -4,11 +4,13 @@
 package org.tsp.projects.wbt.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.tsp.projects.wbt.model.Occupations;
+import org.springframework.stereotype.Repository;
+import org.tsp.projects.wbt.model.Occupation;
 
 /**
  * @author sfagade
  */
-public interface OccupationsRepository extends JpaRepository<Occupations, Long> {
+@Repository
+public interface OccupationsRepository extends JpaRepository<Occupation, Long> {
 
 }
