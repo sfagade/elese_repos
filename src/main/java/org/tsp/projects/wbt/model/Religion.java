@@ -25,7 +25,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-public class Religions extends WbtAbstractModelBase implements Serializable {
+public class Religion extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,6 +40,6 @@ public class Religions extends WbtAbstractModelBase implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "religionId")
-    private List<People> peopleList;
+    private List<Person> personList;
 
 }

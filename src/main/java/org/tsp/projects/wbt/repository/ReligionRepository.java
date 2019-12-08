@@ -6,15 +6,14 @@
 package org.tsp.projects.wbt.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.tsp.projects.wbt.model.Religions;
-
-import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.tsp.projects.wbt.model.Religion;
 
 /**
  *
  * @author sfagade
  */
-public interface ReligionsRepository extends JpaRepository<Religions, Long> {
+@Repository
+public interface ReligionRepository extends JpaRepository<Religion, Long> {
 
 }

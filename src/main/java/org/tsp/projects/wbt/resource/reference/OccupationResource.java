@@ -1,11 +1,10 @@
-package org.tsp.projects.wbt.resource;
+package org.tsp.projects.wbt.resource.reference;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.tsp.projects.wbt.model.Occupations;
+import org.tsp.projects.wbt.model.Occupation;
 import org.tsp.projects.wbt.repository.OccupationsRepository;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class OccupationResource {
      * @return Occupations collections
      */
     @RequestMapping(value = "/fetchAllOccupations", method = RequestMethod.GET)
-    public List<Occupations> fetchAllOccupations() {
+    public List<Occupation> fetchAllOccupations() {
         return occupationRepository.findAll();
     }
 }

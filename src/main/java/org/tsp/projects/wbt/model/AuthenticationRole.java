@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -25,7 +26,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @AllArgsConstructor
-public class AuthenticationRoles extends WbtAbstractModelBase implements Serializable {
+@Data
+public class AuthenticationRole extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -53,7 +55,7 @@ public class AuthenticationRoles extends WbtAbstractModelBase implements Seriali
     private String createdBy;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "authenticationRoleId")
-    private List<UserRoles> userRolesList;
+    private List<UserRole> userRoleList;
 
     @Override
     public int hashCode() {
@@ -65,10 +67,10 @@ public class AuthenticationRoles extends WbtAbstractModelBase implements Seriali
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AuthenticationRoles)) {
+        if (!(object instanceof AuthenticationRole)) {
             return false;
         }
-        AuthenticationRoles other = (AuthenticationRoles) object;
+        AuthenticationRole other = (AuthenticationRole) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 

@@ -56,8 +56,6 @@ public class GeographicalBoundaries extends WbtAbstractModelBase implements Seri
     @JoinColumn(name = "geographical_boundary_type_id")
     @ManyToOne(optional = false)
     private GeographicalBoundaryTypes geographicalBoundaryTypeId;
-    @OneToMany(mappedBy = "stateOfOriginId")
-    private List<People> peopleList;
 
 
 }
