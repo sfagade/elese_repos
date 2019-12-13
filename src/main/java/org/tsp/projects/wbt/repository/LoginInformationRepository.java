@@ -16,4 +16,5 @@ import org.tsp.projects.wbt.model.LoginInformation;
 @Repository
 public interface LoginInformationRepository extends JpaRepository<LoginInformation, Long> {
 
+    LoginInformation findOneByUsername(String username);
 }

@@ -36,7 +36,7 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     @NotNull
     @Size(min = 1, max = 150)
     @Column(name = "pword")
-    private String pword;
+    private String password;
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")
@@ -103,7 +103,7 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
                             LocalDateTime created, LocalDateTime modified) {
         this.id = loginId;
         this.username = username;
-        this.pword = password;
+        this.password = password;
         this.active = isActive;
         this.activationKey = activationKey;
         this.created = created;
