@@ -1,4 +1,4 @@
-package org.tsp.projects.wbt.resource;
+package org.tsp.projects.wbt.resource.reference;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

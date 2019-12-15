@@ -28,7 +28,7 @@ import org.tsp.projects.wbt.auth.JwtAuthenticationFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/**", "/api/registrationResource/registerNewUser")
+                .antMatchers("/api/authenticationResource/**", "/api/registrationResource/registerNewUser")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
