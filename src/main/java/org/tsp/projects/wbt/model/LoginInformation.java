@@ -103,7 +103,7 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
                             LocalDateTime created, LocalDateTime modified) {
         this.id = loginId;
         this.username = username;
-        this.pword = password;
+        this.password = password;
         this.active = isActive;
         this.activationKey = activationKey;
         this.created = created;
