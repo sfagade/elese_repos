@@ -4,6 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.tsp.projects.wbt.model.*;
@@ -31,6 +34,7 @@ public class RegistrationResource {
     private final PersonTitlesRepository personTitlesRepository;
     private final ReligionRepository religionsRepository;
     private final AuthenticationRolesRepository authenticationRolesRepository;
+    private final PasswordEncoder passwordEncoder;
 
     private GeographicalBoundaries geographicalBoundaryLocalGovt = null;
     private GenderTypes genderTypes = null;
@@ -46,7 +50,8 @@ public class RegistrationResource {
                                 GenderTypeRepository genderTypeRepos, MaritalStatusRepository maritalStatusRepos, OccupationsRepository occupationsRepos,
                                 PersonTitlesRepository personTitlesRepos, ReligionRepository religionsRepos, AuthenticationRolesRepository authenticationRolesRepos,
                                 LoginInformationRepository loginInformationRepos, ContactInformationRepository contactInformationRepos,
-                                UserRoleRepository userRoleRepos) {
+                                UserRoleRepository userRoleRepos, PasswordEncoder passwordEncoder) {
+
         this.personRepository = personRepos;
         this.addressesRepository = addressesRepos;
         this.geographicalBoundariesRepository = geographicalBoundariesRepos;
@@ -59,6 +64,7 @@ public class RegistrationResource {
         this.loginInformationRepository = loginInformationRepos;
         this.contactInformationRepository = contactInformationRepos;
         this.userRoleRepository = userRoleRepos;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
@@ -76,12 +82,16 @@ public class RegistrationResource {
         }
         log.info("Completed all reference data validation");
 
-        LoginInformation loginInformation = new LoginInformation(null, loginPayload.getUsername(), loginPayload.getPassword(), false,
+
+        LoginInformation loginInformation = new LoginInformation(null, loginPayload.getUsername(), passwordEncoder.encode(loginPayload.getPassword()), false,
+
                 ApplicationUtility.createRandomCode(8, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"), null, null);
         Addresses address = new Addresses(null, addressPayload.getStreetName(), addressPayload.getHouseNo(), addressPayload.getCity(),
                 geographicalBoundaryLocalGovt, loginInformation, geographicalBoundaryLocalGovt.getBoundaryParentId(),
                 geographicalBoundaryLocalGovt.getBoundaryParentId().getBoundaryParentId(), null, null);
-        Person person = new Person(null, personRequestPayload.getFirstName(), personRequestPayload.getLastName(), personRequestPayload.getMiddleName(),
+
+        Person person = new Person(null, personRequestPayload.getFirstName().toUpperCase(), personRequestPayload.getLastName().toUpperCase(), personRequestPayload.getMiddleName().toUpperCase(),
+
                 personRequestPayload.getDateOfBirth(), genderTypes, address, loginInformation, personTitles, geographicalBoundaryLocalGovt, maritalStatus,
                 occupation, religion, loginInformation, null, null);
         ContactInformation contactInformation = new ContactInformation(null, contactInfoPayload.getContactPhoneNumber(), null,

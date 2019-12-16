@@ -21,4 +21,11 @@ public class LoginInformationPayload extends PayloadAbstractBase {
     private String password;
     @NotNull
     private long roleId;
+
+    @NotNull
+    private String ipAddress;
+    @NotNull
+    private String loginPortal;
+    private String longitude, latitude, client;
+
 }

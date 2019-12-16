@@ -1,6 +1,10 @@
 package org.tsp.projects.wbt.util;
 
+
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,4 +27,17 @@ public class ApplicationUtility {
                 .limit(codeLength)
                 .collect(Collectors.joining());
     }
+
+    /**
+     * This method is used to get exactly tomorrow's date from current date and
+     * time
+     *
+     * @return java.util.Date
+     */
+    public static Date getThisTimeTomorrow() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        return cal.getTime();
+    }
+
 }

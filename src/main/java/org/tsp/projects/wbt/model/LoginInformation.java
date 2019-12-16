@@ -36,7 +36,7 @@ public class LoginInformation extends WbtAbstractModelBase implements Serializab
     @NotNull
     @Size(min = 1, max = 150)
     @Column(name = "pword")
-    private String pword;
+    private String password;
     @Basic(optional = false)
     @NotNull
     @Column(name = "active")

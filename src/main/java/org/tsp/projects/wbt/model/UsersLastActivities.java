@@ -1,22 +1,15 @@
 package org.tsp.projects.wbt.model;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.AttributeOverride;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author sfagade
@@ -26,7 +19,7 @@ import lombok.ToString;
 @AttributeOverride(name = "id", column = @Column(name = "user_last_activity_id", nullable = false, columnDefinition = "BIGINT"))
 @NoArgsConstructor
 @ToString
-@AllArgsConstructor
+@Data
 public class UsersLastActivities extends WbtAbstractModelBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -92,6 +85,24 @@ public class UsersLastActivities extends WbtAbstractModelBase implements Seriali
         }
         UsersLastActivities other = (UsersLastActivities) object;
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+    }
+
+    public UsersLastActivities(Long activityId, String activity, Date activityTime, String ipAddress, Long entityId, String entityName,
+                               String longitude, String latitude, String client, String description, LoginInformation loginInfoId,
+                               LocalDateTime created_, LocalDateTime modified_) {
+        this.activity = activity;
+        this.activityTime = activityTime;
+        this.ipAddress = ipAddress;
+        this.entityId = entityId;
+        this.entityName = entityName;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.client = client;
+        this.description = description;
+        this.loginInformation = loginInfoId;
+        this.id = activityId;
+        this.created = created_;
+        this.modified = modified_;
     }
 
 }
