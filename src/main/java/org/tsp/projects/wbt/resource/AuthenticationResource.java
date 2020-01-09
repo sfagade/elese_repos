@@ -8,14 +8,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.tsp.projects.wbt.ApplicationActivitiesEnum;
+import org.tsp.projects.wbt.enums.ApplicationActivitiesEnum;
 import org.tsp.projects.wbt.auth.JwtTokenProvider;
 import org.tsp.projects.wbt.auth.UserPrincipal;
 import org.tsp.projects.wbt.model.LoginInformation;
 import org.tsp.projects.wbt.model.UsersLastActivities;
-import org.tsp.projects.wbt.payload.ApiResponse;
-import org.tsp.projects.wbt.payload.JwtAuthenticationResponse;
-import org.tsp.projects.wbt.payload.LoginInformationPayload;
+import org.tsp.projects.wbt.payload.response.ApiResponse;
+import org.tsp.projects.wbt.payload.response.JwtAuthenticationResponse;
+import org.tsp.projects.wbt.payload.request.LoginInformationPayload;
 import org.tsp.projects.wbt.repository.LoginInformationRepository;
 import org.tsp.projects.wbt.repository.UsersLastActivitiesRepository;
 import org.tsp.projects.wbt.util.ApplicationUtility;
@@ -35,7 +35,7 @@ public class AuthenticationResource {
 
     @Autowired
     public AuthenticationResource(AuthenticationManager authenticationManager, LoginInformationRepository loginRepository,
-                                  JwtTokenProvider tokenProvider, UsersLastActivitiesRepository usersLastRepos) {
+            JwtTokenProvider tokenProvider, UsersLastActivitiesRepository usersLastRepos) {
         this.authenticationManager = authenticationManager;
         this.loginInformationRepository = loginRepository;
         this.tokenProvider = tokenProvider;
@@ -85,7 +85,6 @@ public class AuthenticationResource {
             ApiResponse apiResponse = new ApiResponse(Boolean.TRUE, holder.getAccessToken());
 
             //apiResponse.setLoginInformationLoad(LoginInformationBuilder.constructLoginInformationLoad(loginInfo, false));
-
             String message = loginInfo.getLoginPerson().getFullName() + " logged in successfully from " + loginRequest.getLoginPortal() + ": Client details are" + loginRequest.getClient()
                     + ", at latitude: " + loginRequest.getLatitude() + " and longitude: " + loginRequest.getLongitude() + ".";
 

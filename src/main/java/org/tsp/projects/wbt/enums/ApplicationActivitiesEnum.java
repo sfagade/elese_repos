@@ -1,4 +1,4 @@
-package org.tsp.projects.wbt;
+package org.tsp.projects.wbt.enums;
 
 public enum ApplicationActivitiesEnum {
 

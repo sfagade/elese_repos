@@ -1,6 +1,7 @@
-package org.tsp.projects.wbt.payload;
+package org.tsp.projects.wbt.payload.response;
 
 import lombok.*;
+import org.tsp.projects.wbt.payload.PayloadAbstractBase;
 
 @Data
 @ToString
