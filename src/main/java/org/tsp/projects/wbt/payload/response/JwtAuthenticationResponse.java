@@ -1,4 +1,4 @@
-package org.tsp.projects.wbt.payload;
+package org.tsp.projects.wbt.payload.response;
 
 public class JwtAuthenticationResponse {
 

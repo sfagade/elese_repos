@@ -1,9 +1,10 @@
-package org.tsp.projects.wbt.payload;
+package org.tsp.projects.wbt.payload.request;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.tsp.projects.wbt.payload.PayloadAbstractBase;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
