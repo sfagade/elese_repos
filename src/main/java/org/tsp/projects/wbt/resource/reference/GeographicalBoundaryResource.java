@@ -12,7 +12,7 @@ import org.tsp.projects.wbt.repository.GeographicalBoundariesRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/geoBoundaryResource")
+@RequestMapping("/api/referenceData/geoBoundaryResource")
 public class GeographicalBoundaryResource {
 
     private final GeographicalBoundariesRepository geoBoundaryRepository;

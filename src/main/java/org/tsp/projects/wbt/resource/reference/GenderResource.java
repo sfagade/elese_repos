@@ -12,7 +12,7 @@ import org.tsp.projects.wbt.repository.GenderTypeRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/genderResource")
+@RequestMapping("/api/referenceData/genderResource")
 public class GenderResource {
 
     private final GenderTypeRepository genderTypeRepos;
